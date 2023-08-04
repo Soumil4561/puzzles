@@ -45,6 +45,17 @@ router.post("/home", async (req, res) => {
   }
 });
 
+router.get("/home/about", async (req, res) => {
+  if(req.isAuthenticated()){
+    const userID = req.user.id;
+    const data = await User.findOne({_id: userID},'username topicsFollowed postsCreated topicsCreated');
+    data.topicsFollowed = data.topicsFollowed.length;
+    data.postsCreated = data.postsCreated.length;
+    data.topicsCreated = data.topicsCreated.length;
+    res.status(200).send(data);
+  }
+});
+
 
 
 router.get("/home/liked", async (req, res) => {
