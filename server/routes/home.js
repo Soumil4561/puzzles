@@ -6,6 +6,8 @@ const Post = require("../models/post.js");
 const User = require("../models/user.js");
 const { getUserFollowedTopics, getInitialPosts, getMorePosts } = require("../controllers/home.js");
 
+
+
 router.get("/", (req, res) => {
   res.redirect("/home");
 });

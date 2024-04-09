@@ -35,12 +35,13 @@ const likePost = async (postID, userID) => {
         const body = {dislikes: updatedDislikes};
         await Post.updateOne({_id: postID}, body);
     }
-    await User.updateOne({_id: userID}, {$push: {postsLiked: postID}});
-    const current = await Post.findOne({_id: postID}, "likes dislikes");
-    var updatedLikes = current.likes + 1;
-    const body = {likes: updatedLikes};
-    await Post.updateOne({_id: postID}, body);
-    return body;
+    //await User.updateOne({_id: userID}, {$push: {postsLiked: postID}});
+    const current = await Post.findOne({_id: postID}, "likes");
+    console.log(current);
+    //var updatedLikes = current.likes + 1;
+    //const body = {likes: updatedLikes};
+    //await Post.updateOne({_id: postID}, body);
+    return current;
 }
 
 const dislikePost = async (postID, userID) => {
